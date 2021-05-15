@@ -13,7 +13,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 # are made.
 COPY package*.json ./
 
-RUN npm install -g npm@7.13.0 --silent
+RUN npm install -g npm@6.14.4 -silent
 # RUN npm install react-scripts@3.4.1 -g --silent
 
 # Copy the main application
