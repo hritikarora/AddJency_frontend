@@ -12,8 +12,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 # will be cached unless changes to one of those two files 
 # are made.
 COPY package.json package-lock.json ./
-RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
+RUN npm install -g npm@7.13.0 --silent
+# RUN npm install react-scripts@3.4.1 -g --silent
 
 # Copy the main application
 COPY . ./
