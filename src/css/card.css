@@ -1,0 +1,8 @@
+img:hover{
+    cursor: pointer;
+}
+.card{
+    border-radius: 10px;
+    padding: 10px;
+    height: 250px;
+}

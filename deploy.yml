@@ -1,0 +1,8 @@
+---
+- name: Pull and Run docker image of hritik97/AddJency_frontend
+  hosts: all
+  tasks:
+    - name: Pull hritik97/AddJency_frontend
+      docker_image:
+        name: hritik97/AddJency_frontend
+        source: pull

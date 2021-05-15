@@ -1,0 +1,22 @@
+.inner-company-notify{
+    border-radius: 7px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    color:black;
+    margin: 20px;
+
+}
+.btn1
+{
+    color: yellowgreen;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+.btn2
+{
+    color: darkred;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}

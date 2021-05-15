@@ -1,0 +1,131 @@
+.hero-section {
+    min-height: 850px;
+    background-image: url("../images/back2.png");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    opacity: 0.9;
+
+}
+.nav
+{
+   position: absolute;
+   /* margin: 40px; */
+   width: 100%;
+
+}
+.welcome
+{
+    padding-top: 130px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.l-o-s
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.l-o-s>a:hover
+{
+    cursor: pointer;
+}
+.partners
+{
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    background-color: lightseagreen;
+}
+.about-section
+{
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+
+
+}
+.about-text
+{
+    box-shadow: 4px 4px 25px hsla(0,1.9%,42%,0.15);
+    /* margin: 10px; */
+    border-radius: 20px;
+    background-color:rgb(216, 202, 202);
+    padding: 20px;
+}
+.about-text span::before {
+    content: "“";
+    font-size: 72px;
+    color: #79b83a;
+  }
+  
+  .about-text span::after {
+    content: "”";
+    font-size: 72px;
+    color: #79b83a;
+  }
+.stats
+{
+    margin-top: 30px;
+}
+.tag {
+    padding: 16px;
+    color: black;
+    font-family:"Telefon,sans-serif";
+    font-size:3.0rem;
+}
+
+.Model-in {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    padding: 20px;
+    margin: 30px;
+    }
+
+.Model-up {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    margin: 60px;
+    }
+input , select {
+    padding: 7px;
+    /* margin: 50px; */
+    color: black;
+    left: 10px;
+    right: 10px;
+    border-radius: 15px;
+    border: none;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 17px; 
+    bottom: 10px;
+    /* width: 100%; */
+    /* text-decoration: underline; */
+    background-color:aliceblue;
+    outline: none;
+    border: none;
+}
+.bt {
+  background: #58a4b0;
+  border: none;
+  border-radius: 15px;
+  padding: 7px;
+  color: white;
+  /* width: 25%; */
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px; 
+  cursor: pointer; 
+}
+select {
+    border-radius: 7px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+}
+.hidden {
+    display: none;
+}
