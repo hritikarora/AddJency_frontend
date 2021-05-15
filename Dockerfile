@@ -12,7 +12,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 # will be cached unless changes to one of those two files 
 # are made.
 COPY package.json package-lock.json ./
-RUN npm install 
+RUN npm install --silent
 
 # Copy the main application
 COPY . ./
