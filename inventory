@@ -1,1 +1,1 @@
-192.168.43.40 ansible_user=hritik ansible_python_interpreter=/usr/bin/python3
+192.168.1.8 ansible_user=hritik ansible_python_interpreter=/usr/bin/python3
