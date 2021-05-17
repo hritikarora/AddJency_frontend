@@ -1,3 +1,4 @@
+// axios for REST services
 import axios from '../../node_modules/axios';
 
 const USER_API_BASE_URL = "http://localhost:8084/api/v1";
@@ -6,17 +7,20 @@ export const USER_NAME_SESSION_ATTRIBUTE_NAME = "authenticatedUser";
 
 class UserService {
 
+    // user sign up
     createUser(user){
         console.log(user)
         return axios.post(USER_API_BASE_URL.concat("/users"),user);
     }
 
+    // post an ad
     createAd(advertisement)
     {
         console.log(advertisement)
         return axios.post(USER_API_BASE_URL.concat("/adv"),advertisement);
     }
 
+    // login validation
     validateUser = async (email,password) => {
 
         const USER_API_BASE_URL = "http://localhost:8084/api/v1/users";
@@ -34,20 +38,19 @@ class UserService {
             console.log(JSON.parse(sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)));
             return true;
         }
+        else{
+            return false;
+        }
       }
-      isUserLoggedIn() {
+
+    isUserLoggedIn() {
         let user = sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME);
 
         if(user.email == null) return false;
         else return true;
     }
 
-    getLoggedInUserId() {
-        let user = sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME);
-        if (user.email == null) return '';
-        else return user.id;
-
-    }
+    // Normal user notifications
     getAllAds = async () => {
 
         let id = sessionStorage.getItem("id");
@@ -59,6 +62,7 @@ class UserService {
         return list;
     }
 
+    // Company user Ad requests
     getAllAdsByCompanyName = async () => {
         let user = sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME);
         let cName = JSON.parse(user).companyName;
@@ -72,6 +76,8 @@ class UserService {
         let list = response.data;
         return list;
     }
+
+    // Post an ad page dynamic dropdown for companies 
     getCompanyNames = async () => 
     {
         const USER_API_BASE_URL = "http://localhost:8084/api/v1/companyname"; 

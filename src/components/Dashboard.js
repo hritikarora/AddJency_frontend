@@ -35,18 +35,24 @@ class Dashboard extends Component {
   {
     super(props);
     this.state={
+      //page transition
       currentPage:"Dashboard",
+      
+      //post an add
       companyName:"",
       description:"",
       Ad_date:"",
+      companies:[],
+
+      //notifications
       adItems:null,
       adItemsCompany:null,
-      userType:"",
       
+      // user profile
+      userType:"",
       firstname:"",
       lastname:"",
       email:"",
-      companies:[]
     }
     this.mySubmitHandler = this.mySubmitHandler.bind(this)
     this.myLogoutHandler = this.myLogoutHandler.bind(this)
@@ -62,7 +68,6 @@ class Dashboard extends Component {
     this.setState({email:user.email});
     this.setState({userType:user.userType});
     
-    // setting user type
 
     // getting all ads for normal user
     const items = UserService.getAllAds().then((ad) =>
@@ -86,6 +91,7 @@ class Dashboard extends Component {
     }
    );
 
+   //getting dynamic dropdown list of companies in post an add
     let arr=UserService.getCompanyNames(); 
     console.log(arr) ;
     let companies1=[{id:0,name:"select company"}]; 
@@ -101,15 +107,17 @@ class Dashboard extends Component {
         }  
       } 
     ); 
+
   this.setState({ companies: companies1 }); 
   }
 
+  //logout handle
   myLogoutHandler()
   {
-    this.setState({isLoggedIn:false});
     sessionStorage.clear();
   }
 
+  // sending ad post request
   mySubmitHandler()
   {
     let user = JSON.parse(sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME));
@@ -359,15 +367,6 @@ class Dashboard extends Component {
                           <h3>Email id : </h3><p>{this.state.email}</p><br/>
                       </form>
                   </div>
-                  {/* <div className="col-md-8">
-                      <form className="form-group" onSubmit={this.mySubmitHandler} >
-                          <h2 className="heading">User Details</h2><br/>
-                          <h3>User Type : </h3><p>{this.state.userType}</p><br/>
-                          <h3>First name : </h3><p>{this.state.firstname}</p><br/>
-                          <h3>Last name : </h3><p>{this.state.lastname}</p><br/>
-                          <h3>Email id : </h3><p>{this.state.email}</p><br/>
-                      </form>
-                  </div> */}
               </div>
           </div>
       }

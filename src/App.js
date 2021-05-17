@@ -1,22 +1,23 @@
-import React,{useState} from 'react'
+// required basic imports
+import React from 'react'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 
+// bootstrap
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+// css
 import "./css/app.css";
 
+// components
 import SignUp from "./components/SignUp";
-import Footer from "./components/Footer"
 import LoginPage from "./components/LoginPage"
-import Head from "./components/Head";
 import Dashboard from './components/Dashboard';
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 
 
 function App()
 {
-  const [isLoggedIn,setIsLoggedIn] = useState(true);
-  const [id,setId] = useState("");
-  
+
   return (
     <div>
       <Router> 
