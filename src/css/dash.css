@@ -221,3 +221,15 @@ flex-direction: column;
 {
   margin: 10px;
 }
+.profile
+{
+  padding: 50px 100px 50px 100px;
+  box-shadow:4px 4px 25px hsla(0,1.9%,42%,0.15);
+  border-radius: 10px;
+}
+.postAd{
+  padding-right: 100px;
+  padding: 50px;
+  box-shadow:4px 4px 25px hsla(0,1.9%,42%,0.15);
+  border-radius: 10px;
+}

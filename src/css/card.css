@@ -4,5 +4,8 @@ img:hover{
 .card{
     border-radius: 10px;
     padding: 10px;
-    height: 250px;
+    height: 230px;
+}
+.card-img-top{
+    height: 200px;
 }

@@ -1,27 +1,33 @@
 import react,{Component} from 'react';
 import reactDom from 'react-dom';
+import {Link} from 'react-router-dom';
+import {NavDropdown,Navbar,Form,FormControl} from 'react-bootstrap';
+
+// import css
 import '../css/dash.css';
+
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Head from "./Head";
+
+// import components
 import Card from "./Card.js";
+import Notify from './Notify';
+import CompanyNotify from './CompanyNotify';
+import UserService,{USER_NAME_SESSION_ATTRIBUTE_NAME} from "../services/UserService";
+import Charts from "./Charts";
+
+// import images
 import hin from "../images/hindu.jpg";
 import toi from "../images/toi.png";
 import pat from "../images/patrika2.jpg";
-import UserService,{USER_NAME_SESSION_ATTRIBUTE_NAME} from "../services/UserService";
-import Notify from './Notify';
-import CompanyNotify from './CompanyNotify';
-import dash from "../images2/dark-dashboard.svg";
-import profile from "../images2/notification-dark.svg";
-import img1 from "../images2/notify.svg";
-import img2 from "../images2/stocks.svg";
-import '../../node_modules/font-awesome/css/font-awesome.min.css';
-import {Nav,NavDropdown,Navbar,Form,FormControl, NavLink} from 'react-bootstrap';
-import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import {Link} from 'react-router-dom';
 import msg from "../images2/icons/Emai_nav_outlined.svg";
-
-import Charts from "./Charts";
+import mag1 from "../images/mag2.png";
+import mag2 from "../images/mag5.jpg";
+import mag3 from "../images/mag4.jpg";
+import mag5 from "../images/mag6.png";
+import rad1 from "../images/rad1.jpg";
+import rad2 from "../images/rad2.jpeg";
+import rad3 from "../images/rad3.jpg";
 
 class Dashboard extends Component {
 
@@ -40,7 +46,7 @@ class Dashboard extends Component {
       firstname:"",
       lastname:"",
       email:"",
-
+      companies:[]
     }
     this.mySubmitHandler = this.mySubmitHandler.bind(this)
     this.myLogoutHandler = this.myLogoutHandler.bind(this)
@@ -54,7 +60,6 @@ class Dashboard extends Component {
     this.setState({firstname:user.firstname});
     this.setState({lastname:user.lastname});
     this.setState({email:user.email});
-    
     this.setState({userType:user.userType});
     
     // setting user type
@@ -69,16 +74,34 @@ class Dashboard extends Component {
         this.setState({adItems:items});
      }
     );
+    
     // getting all ads for a company for company user
     const items2 = UserService.getAllAdsByCompanyName().then((ad) =>
     {
       console.log(ad)
       const items = ad.map((item) => 
-       <CompanyNotify adDate={item['adDate']} desc={item['desc']} />
+       <CompanyNotify adId={item['adId'] } companyName={item['companyName']} userId={item['userId']} description={item['desc']} date={item['adDate']} status={item['status']}  />
        )
        this.setState({adItemsCompany:items});
     }
    );
+
+    let arr=UserService.getCompanyNames(); 
+    console.log(arr) ;
+    let companies1=[{id:0,name:"select company"}]; 
+    arr.then((companies)=> { 
+      for(let i=0;i<companies.length;i++) 
+      
+        if(companies[i]!="") 
+        { 
+          companies1[i+1]=
+          { 
+            name:companies[i] 
+          } 
+        }  
+      } 
+    ); 
+  this.setState({ companies: companies1 }); 
   }
 
   myLogoutHandler()
@@ -103,6 +126,7 @@ class Dashboard extends Component {
 
   render()
   {
+
     this.myClickHandler=(event)=>
     {
       this.setState({currentPage:event.target.name})
@@ -153,10 +177,7 @@ class Dashboard extends Component {
               <i style={{padding:"10px"}} className="fa fa-address-book"/>
               Contact</a>
             </li>
-            <li className="sidebar-li">
-              <a href="#about">About</a>
-            </li>
-            
+      
           </ul>
         </nav>
       </div>
@@ -185,29 +206,52 @@ class Dashboard extends Component {
         this.state.currentPage==="Dashboard"
         ?
         <div className="col-lg-9 outer-div">
-          
-              <Charts/>
-            
+          <h3>Popular <i class="fa fa-angle-right"></i></h3>
+          <div className="row">
+            <Card className="card" src={rad1} alt={"Radio mirchi"} onClick={(e)=>this.handleClick(e)} />
+            <Card className="card" src={mag5} alt={""} onClick={(e)=>this.handleClick(e)} />
+            <Card className="card" src={mag1} alt={"hindu"} onClick={(e)=>this.handleClick(e)} />
+          </div>
+          <br></br>
+          <br></br>
+          <h3>Newspaper <i class="fa fa-angle-right"></i></h3>
           <div className="row">
             <Card className="card" src={toi} alt={"times of india"} title={"TOI"} onClick={(e)=>this.handleClick(e)} />
             <Card className="card" src={pat} alt={"patrika"} title={"Patrika"} onClick={(e)=>this.handleClick(e)} />
             <Card className="card" src={hin} alt={"hindu"} title={"The Hindu"} onClick={(e)=>this.handleClick(e)} />
           </div>
+          <br></br>
+          <br></br>
+          <h3>Magazine <i class="fa fa-angle-right"></i></h3>
+          <div className="row">
+            <Card className="card" src={mag1} alt={"times of india"} title={"TOI"} onClick={(e)=>this.handleClick(e)} />
+            <Card className="card" src={mag2} alt={"patrika"} title={"Patrika"} onClick={(e)=>this.handleClick(e)} />
+            <Card className="card" src={mag3} alt={"hindu"} title={"The Hindu"} onClick={(e)=>this.handleClick(e)} />
+          </div>
+          <br></br>
+          <br></br>
+          <h3>Radio <i class="fa fa-angle-right"></i></h3>
+          <div className="row">
+            <Card className="card" src={rad1} alt={"times of india"} title={"TOI"} onClick={(e)=>this.handleClick(e)} />
+            <Card className="card" src={rad2} alt={"patrika"} title={"Patrika"} onClick={(e)=>this.handleClick(e)} />
+            <Card className="card" src={rad3} alt={"hindu"} title={"The Hindu"} onClick={(e)=>this.handleClick(e)} />
+          </div>
         </div>
         :
         this.state.currentPage==="Ad"?
           <div className="col-lg-9 outer-div">
-              
-                
+              <div className="postAd">
                       <form className="form-group" onSubmit={this.mySubmitHandler} >
-                          <h2 className="heading">Post an Advertisement!</h2><br/>
-  
+                          <h2 className="heading">Post an Advertisement</h2><br/>
+
                           <select name="companyName" onChange={this.myChangeHandler} value={this.state.companyName} > 
-                              <option value= "company name">Select Company</option>
-                              <option value= "TOI">TOI</option>
-                              <option value= "Patrika">Patrika</option>
-                              <option value= "The Hindu">The Hindu</option>
-                          </select><br/>
+                          {
+                          (this.state.companies).length > 0 && (this.state.companies).map((item, i) => {
+                             return ( <option key={i+1} value={item.name}>{item.name}</option> 
+                             ) 
+                             }, this)}
+                          </select> 
+                          <br/>
                           <hr/>
                           <label for="Ad_post_date">Select Date : </label>
                           <input type="date" name="Ad_date" onChange={this.myChangeHandler} placeholder="Ad post date" /><br/>
@@ -215,22 +259,21 @@ class Dashboard extends Component {
                           <textarea type="text" name="description" onChange={this.myChangeHandler} value={this.state.description} placeholder="Description" /><br/>
                           <input type="submit" name="submit" value="submit" className="btn btn-primary" />
                       </form>
-                  
-              
+                      </div>
           </div>
           :
           <div className="col-lg-9 outer-div">
               <div className="row">
-                  <div className="col-md-8">
+              <div className="profile">
+                  <i style={{fontSize:"84px",padding:"15px",marginRight:"20px"}} class="fa fa-user-circle"></i>
                       <form className="form-group" onSubmit={this.mySubmitHandler} >
-                          <h2 className="heading">User Details</h2><br/>
+                          <h2 className="heading">{this.state.firstname} {this.state.lastname}</h2><br/>
                           <h3>User Type : </h3><p>{this.state.userType}</p><br/>
-                          <h3>First name : </h3><p>{this.state.firstname}</p><br/>
-                          <h3>Last name : </h3><p>{this.state.lastname}</p><br/>
+                          
                           <h3>Email id : </h3><p>{this.state.email}</p><br/>
                       </form>
                   </div>
-              </div>
+                  </div>
           </div>
       }
       <div className="outer-outer col-lg-3">
@@ -238,7 +281,6 @@ class Dashboard extends Component {
           <header className="section-header">Status</header>
         {this.state.adItems}
         </section>
-        
       </div>
 
     </div>
@@ -308,7 +350,16 @@ class Dashboard extends Component {
         :
         <div className="col-md-8 outer-div">
               <div className="row">
-                  <div className="col-md-8">
+              <div className="profile">
+                  <i style={{fontSize:"84px",padding:"15px",marginRight:"20px"}} class="fa fa-user-circle"></i>
+                      <form className="form-group" onSubmit={this.mySubmitHandler} >
+                          <h2 className="heading">{this.state.firstname} {this.state.lastname}</h2><br/>
+                          <h3>User Type : </h3><p>{this.state.userType}</p><br/>
+                          
+                          <h3>Email id : </h3><p>{this.state.email}</p><br/>
+                      </form>
+                  </div>
+                  {/* <div className="col-md-8">
                       <form className="form-group" onSubmit={this.mySubmitHandler} >
                           <h2 className="heading">User Details</h2><br/>
                           <h3>User Type : </h3><p>{this.state.userType}</p><br/>
@@ -316,7 +367,7 @@ class Dashboard extends Component {
                           <h3>Last name : </h3><p>{this.state.lastname}</p><br/>
                           <h3>Email id : </h3><p>{this.state.email}</p><br/>
                       </form>
-                  </div>
+                  </div> */}
               </div>
           </div>
       }

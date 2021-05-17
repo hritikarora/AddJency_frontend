@@ -72,6 +72,16 @@ class UserService {
         let list = response.data;
         return list;
     }
+    getCompanyNames = async () => 
+    {
+        const USER_API_BASE_URL = "http://localhost:8084/api/v1/companyname"; 
+        
+        const response = await axios.get(USER_API_BASE_URL);
+
+        console.log(response) 
+        
+        return response.data; 
+    } 
 }
 
 export default new UserService()

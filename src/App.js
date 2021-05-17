@@ -24,7 +24,8 @@ function App()
         <Switch>
 
           <Route path="/" exact> <LoginPage /> </Route>
-          <AuthenticatedRoute path="/dashboard" id={id} component={Dashboard}> <Dashboard /> </AuthenticatedRoute>
+          <Route path="/dashboard"> <Dashboard /> </Route>
+          {/* <AuthenticatedRoute path="/dashboard" id={id} component={Dashboard}> <Dashboard /> </AuthenticatedRoute> */}
           <Route path="/signup" exact component={SignUp}> <SignUp /> </Route>
           
         </Switch>

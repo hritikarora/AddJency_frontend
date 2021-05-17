@@ -145,8 +145,9 @@ function LoginPage(props){
                     <h1 style={{display:"flex",flexDirection:"row",justifyContent:"center",padding:"40px"}}>Our company</h1>
                         <div style={{padding:"10px"}}>
                             <div className="about-text">
-                            <span>AddJency is an advertisement coordinator website that lets you decide which company is best for you to post your advertisement.
-                              We are a group of people aiming towards
+                            <span><h4>AddJency is an advertisement coordinator website that lets you decide which company is best for you to post your advertisement.
+                              
+                              </h4>
                             </span>
                             </div>
                         </div>

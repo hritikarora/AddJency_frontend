@@ -36,7 +36,6 @@
     min-height: 600px;
     display: flex;
     flex-direction: column;
-    background-color: lightseagreen;
 }
 .about-section
 {
@@ -51,18 +50,18 @@
     box-shadow: 4px 4px 25px hsla(0,1.9%,42%,0.15);
     /* margin: 10px; */
     border-radius: 20px;
-    background-color:rgb(216, 202, 202);
+    background-color:rgb(194, 194, 181);
     padding: 20px;
 }
 .about-text span::before {
     content: "“";
-    font-size: 72px;
+    font-size: 70px;
     color: #79b83a;
   }
   
   .about-text span::after {
     content: "”";
-    font-size: 72px;
+    font-size: 70px;
     color: #79b83a;
   }
 .stats
